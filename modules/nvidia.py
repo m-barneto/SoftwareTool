@@ -1,18 +1,23 @@
 import os
+import threading
 
 from modules.module import IModule
-from utilities.config import NVIDIA_SETUP_PATH
-from utilities.utilities import run
+from utilities.utilities import run, get_nvidia_setup
 
 
 class NVIDIA(IModule):
     def __init__(self):
+        self.nvidia_version = "latest"
         IModule.__init__(self, "NVIDIA")
 
+    def set_nvidia_version(self, version):
+        self.nvidia_version = version
+
     def run(self):
-        if os.path.exists(NVIDIA_SETUP_PATH):
+        nvidia_setup = get_nvidia_setup(self.nvidia_version)
+        if os.path.exists(nvidia_setup):
             self.log("Running installer.")
-            setup = [NVIDIA_SETUP_PATH, "-s", "-n"]
+            setup = [nvidia_setup, "-s", "-n"]
             installed = run(setup)
             if installed == 0:
                 self.log("Installed.")

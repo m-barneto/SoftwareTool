@@ -3,8 +3,6 @@ import shutil
 
 from modules.module import IModule
 
-from utilities.utilities import set_reg_key
-
 
 class Wallpaper(IModule):
     SPI_SETDESKTOPWALLPAPER = 20
