@@ -1,9 +1,11 @@
 import tkinter as tk
+from tkinter import messagebox
 
 from interface.widgets import CheckboxImage
 from modules.armourycrate import ArmouryCrate
 from modules.gamemode import GameMode
 from modules.icue import ICue
+from modules.lconnect import LConnect
 from modules.magician import Magician
 from modules.msicenter import MsiCenter
 from modules.nvidia import NVIDIA
@@ -20,7 +22,7 @@ modules = []
 
 window = tk.Tk()
 window.title("PicoProof Installer")
-window.geometry("370x550")
+window.geometry("370x625")
 window.tk.call('tk', 'scaling', 2.0)
 window.config(bg="#303030")
 
@@ -58,13 +60,18 @@ modules.append(chkICue)
 chkNZXT = CheckboxImage(NZXT(), window, text="NZXT")
 chkNZXT.grid(row=9, sticky='w')
 modules.append(chkNZXT)
+chkLConnect = CheckboxImage(LConnect(), window, text="LConnect")
+chkLConnect.grid(row=10, sticky='w')
+modules.append(chkLConnect)
 chkMagician = CheckboxImage(Magician(), window, text="Samsung Magician")
-chkMagician.grid(row=10, sticky='w')
+chkMagician.grid(row=11, sticky='w')
 modules.append(chkMagician)
 
 selectedVersion = tk.StringVar(value=get_nvidia_versions()[0])
 lbNvidiaVersions = tk.OptionMenu(window, selectedVersion, *get_nvidia_versions())
 lbNvidiaVersions.grid(row=3, column=1, sticky='e')
+
+print(chkWallpaper['text'])
 
 
 def set_recommended():
@@ -124,3 +131,4 @@ set_recommended()
 
 window.mainloop()
 
+messagebox.showinfo("PicoProof Installer", "Hit OK when done installing software.")
