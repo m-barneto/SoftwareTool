@@ -1,5 +1,5 @@
 import os
-import threading
+import logging
 
 from utilities.utilities import run
 
@@ -10,15 +10,16 @@ class IModule:
     def __init__(self, module_name, manual=False):
         self.module_name = module_name
         self.manual = manual
-        # self.run()
+        logging.debug("Initializing module " + self.module_name)
 
     def run(self):
         pass
 
     def log(self, msg):
-        print(self.module_name + ": " + msg)
+        logging.info(self.module_name + ": " + msg)
 
     def install(self, installer_path):
+        logging.debug("Installing module " + self.module_name)
         if os.path.exists(installer_path):
             self.log("Running installer.")
             if self.manual:
