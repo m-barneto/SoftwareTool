@@ -23,7 +23,9 @@ CREATE_SUPERPOSITION_UNINSTALLER = True
 POWERPLAN_GUID = "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
 
 ARMOURY_CRATE_SETUP_PATH = SHARED_FOLDER_PATH + "ArmouryCrateInstaller.exe"
+ARMOURY_CRATE_SHELL_CMD = "explorer.exe shell:appsFolder\\B9ECED6F.ArmouryCrate_qmba6cd70vzyy!App"
 MSICENTER_SETUP_PATH = SHARED_FOLDER_PATH + "MSI Center_2.0.31.0.exe"
+MSICENTER_SHELL_CMD = "explorer.exe shell:appsFolder\\9426MICRO-STARINTERNATION.MSICenter_kzh8wxbdkxb8p!App"
 
 ICUE_SETUP_PATH = SHARED_FOLDER_PATH + "Install iCUE.exe"
 SAMSUNG_MAGICIAN_SETUP_PATH = SHARED_FOLDER_PATH + "Samsung_Magician_Installer_Official_8.0.1.1000.exe"

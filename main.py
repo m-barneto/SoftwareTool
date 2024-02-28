@@ -2,6 +2,7 @@ import logging
 import sys
 from tkinter import messagebox
 
+from automation.msi_center import MsiCenterAutomation
 from interface.select_modules import SelectModules
 from modules.updates import Updates
 from utilities.session import should_update, is_initial_launch, tick_updater
@@ -17,15 +18,10 @@ handler.setLevel(logging.INFO)
 # Add handler to logger
 logging.getLogger().addHandler(handler)
 
-# Check for Windows updates before going to modules
-if should_update() and not is_initial_launch():
-    logging.info('Need to run updates again. ' + str(is_initial_launch()))
-    # run updates
-    tick_updater()
-    Updates().run()
-else:
-    select_gui = SelectModules()
-    select_gui.run()
+select_gui = SelectModules()
+select_gui.run()
 
-# messagebox.showinfo("PicoProof Installer", "Hit OK when done installing software.")
+#MsiCenterAutomation()
+
+messagebox.showinfo("PicoProof Installer", "Hit OK when done installing software.")
 
