@@ -1,5 +1,6 @@
 from modules.module import IModule
 from utilities.powershell import install_updates
+from utilities.session import is_initial_launch, tick_updater
 
 
 class Updates(IModule):
@@ -7,5 +8,7 @@ class Updates(IModule):
         IModule.__init__(self, "Windows Updates")
 
     def run(self):
-        install_updates()
+        if is_initial_launch():
+            tick_updater()
+            install_updates()
 

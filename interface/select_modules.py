@@ -10,6 +10,7 @@ from modules.nvidia import NVIDIA
 from modules.nzxt import NZXT
 from modules.powerplan import PowerPlan
 from modules.superposition import Superposition
+from modules.sysprep import SysPrep
 from modules.updates import Updates
 from modules.wallpaper import Wallpaper
 
@@ -25,7 +26,7 @@ class SelectModules:
         self.modules = {}
         self.window = tk.Tk()
         self.window.title("PicoProof Installer")
-        self.window.geometry("370x625")
+        self.window.geometry("370x600")
         self.window.tk.call('tk', 'scaling', 2.0)
         self.window.config(bg="#303030")
 
@@ -34,6 +35,7 @@ class SelectModules:
         self.btn_recommended = None
         self.btn_uncheck_all = None
         self.btn_install = None
+        self.btn_sysprep = None
 
         self.setup_options()
         self.setup_buttons()
@@ -97,9 +99,13 @@ class SelectModules:
                                          command=self.uncheck_all)
         self.btn_uncheck_all.grid(row=1, column=1, sticky='e')
 
-        self.btn_install = tk.Button(self.window, text="Install", justify="right", anchor="e", relief="groove",
+        self.btn_sysprep = tk.Button(self.window, text="Sysprep", justify="right", anchor="e", relief="groove",
+                                     command=self.sysprep)
+        self.btn_sysprep.grid(row=7, column=1, sticky='e')
+
+        self.btn_install = tk.Button(self.window, text="   Install     ", justify="right", anchor="e", relief="groove",
                                      command=self.install)
-        self.btn_install.grid(row=10, column=1, sticky='e')
+        self.btn_install.grid(row=11, column=1, sticky='e')
 
     def set_recommended(self):
         logging.debug("Setting recommended")
@@ -146,3 +152,6 @@ class SelectModules:
             if self.modules[module].module.module_name == "NVIDIA":
                 self.modules[module].module.set_nvidia_version(self.selected_nvidia_version.get())
             self.modules[module].run()
+
+    def sysprep(self):
+        SysPrep().run()

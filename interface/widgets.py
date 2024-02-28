@@ -46,8 +46,8 @@ class CheckboxImage(tk.Label):
             img = self.checked_icon
 
         self.config(image=img)
-
-        self.module.log("Enabled? " + str(self.state))
+        if self.state:
+            self.module.log(str(self.state))
 
     def is_enabled(self):
         return self.state
