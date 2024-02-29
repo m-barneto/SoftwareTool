@@ -3,7 +3,6 @@ from PIL import Image, ImageTk
 
 from modules.module import IModule
 from utilities.config import OFF_SWITCH_PATH, ON_SWITCH_PATH
-from utilities.utilities import get_path
 
 
 class CheckboxImage(tk.Label):

@@ -23,14 +23,6 @@ def run(command):
     return result.returncode
 
 
-def get_path(filename):
-    if hasattr(sys, "_MEIPASS"):
-        print('meipass')
-        return os.path.join(sys._MEIPASS, filename)
-    else:
-        return os.path.join("./", filename)
-
-
 def get_mobo_manu():
     c = wmi.WMI()
     query = "select * from " + "Win32_BaseBoard"
@@ -77,5 +69,6 @@ def get_nvidia_setup(version):
         return NVIDIA_VERSIONS_DIRECTORY + get_nvidia_versions()[0] + "/setup.exe"
     else:
         return NVIDIA_VERSIONS_DIRECTORY + version + "/setup.exe"
+
 
 # moboName = str(c.query(query)[0].wmi_property('Product').value)

@@ -12,11 +12,10 @@ from modules.occt import OCCT
 from modules.powerplan import PowerPlan
 from modules.superposition import Superposition
 from modules.sysprep import SysPrep
-from modules.updates import Updates
 from modules.wallpaper import Wallpaper
 
 from utilities.config import WALLPAPER_COPY_DIR, WALLPAPER_SOURCE
-from utilities.utilities import get_path, get_mobo_manu, has_samsung_drive, has_nvidia_gpu, get_nvidia_versions
+from utilities.utilities import get_mobo_manu, has_samsung_drive, has_nvidia_gpu, get_nvidia_versions
 
 import logging
 
@@ -60,10 +59,6 @@ class SelectModules:
         chk_nvidia = CheckboxImage(NVIDIA(), self.window, text="NVIDIA Drivers")
         chk_nvidia.grid(row=3, sticky='w')
         self.modules[chk_nvidia['text']] = chk_nvidia
-
-        chk_updates = CheckboxImage(Updates(), self.window, text="Windows Updates")
-        chk_updates.grid(row=4, sticky='w')
-        self.modules[chk_updates['text']] = chk_updates
 
         chk_msi_center = CheckboxImage(MsiCenter(), self.window, text="MSI Center")
         chk_msi_center.grid(row=5, sticky='w')
@@ -128,8 +123,6 @@ class SelectModules:
             logging.debug("NVIDIA GPU detected")
             self.modules['NVIDIA Drivers'].update_image(True)
 
-        self.modules['Windows Updates'].update_image(True)
-
         # if msi mobo
         manu = get_mobo_manu()
         if manu is not None:
@@ -157,6 +150,3 @@ class SelectModules:
             if self.modules[module].module.module_name == "NVIDIA":
                 self.modules[module].module.set_nvidia_version(self.selected_nvidia_version.get())
             self.modules[module].run()
-
-    def sysprep(self):
-        SysPrep().run()
